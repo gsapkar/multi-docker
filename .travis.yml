@@ -1,0 +1,24 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t gsapkar/docker-complex-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true gsapkar/docker-complex-test npm run test -- --coverage
+
+after_success:
+  - docker build -t gsapkar/multi-client ./client
+  - docker build -t gsapkar/multi-nginx ./nginx
+  - docker build -t gsapkar/multi-server ./server
+  - docker build -t gsapkar/multi-worker ./worker
+  # Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take images and push to Docker Hub
+  - docker push gsapkar/multi-client
+  - docker push gsapkar/multi-nginx
+  - docker push gsapkar/multi-server
+  - docker push gsapkar/multi-worker
