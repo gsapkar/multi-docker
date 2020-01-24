@@ -17,7 +17,7 @@ after_success:
   - docker build -t gsapkar/multi-worker ./worker
   # Login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take images and push to Docker Hub
+  # Take images and push to Docker Hubs
   - docker push gsapkar/multi-client
   - docker push gsapkar/multi-nginx
   - docker push gsapkar/multi-server
