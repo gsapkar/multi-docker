@@ -22,3 +22,16 @@ after_success:
   - docker push gsapkar/multi-nginx
   - docker push gsapkar/multi-server
   - docker push gsapkar/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multy-docker"
+  env: "MultyDocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-202873920067"
+  bucket_path: "docker-multy"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
