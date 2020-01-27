@@ -5,18 +5,21 @@
       "name": "client",
       "image": "gsapkar/multi-client",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "api",
       "image": "gsapkar/multi-server",
       "hostname": "server",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "worker",
       "image": "gsapkar/multi-worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -28,7 +31,8 @@
           "containerPort": "80"
         }
       ],
-      "links": ["client", "server"]
+      "links": ["client", "server"],
+      "memory": 128
     }
   ]
 }
