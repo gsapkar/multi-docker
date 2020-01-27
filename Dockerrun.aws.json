@@ -9,9 +9,9 @@
       "memory": 128
     },
     {
-      "name": "api",
+      "name": "server",
       "image": "gsapkar/multi-server",
-      "hostname": "server",
+      "hostname": "api",
       "essential": false,
       "memory": 128
     },
